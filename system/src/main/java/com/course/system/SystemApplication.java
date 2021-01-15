@@ -6,25 +6,30 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 
+/**
+ * @auther Yankd
+ * @date 2021/1/12 0012 17:59
+ */
 @SpringBootApplication
 @EnableEurekaClient
-@MapperScan("com.course.system.mapper")
+@ComponentScan("com.course")
+@MapperScan("com.course.server.mapper")
 public class SystemApplication {
+    private static final Logger LOG = LoggerFactory.getLogger (SystemApplication.class);
 
-//    public static void main(String[] args) {
-//        SpringApplication.run (EurekaApplication.class, args);
-//    }
-
-    private static final Logger LOG = LoggerFactory.getLogger(SystemApplication.class);
     public static void main(String[] args) {
-        SpringApplication app = new SpringApplication (SystemApplication.class
-        );
+        SpringApplication app = new SpringApplication (SystemApplication.class);
         Environment env = app.run (args).getEnvironment ();
         LOG.info ("启动成功！！！");
-        LOG.info ("System地址：\thttp://localhost:{}",env.getProperty ("server.port"));
+        LOG.info ("System地址：\thttp://localhost:{}", env.getProperty ("server.port"));
 
     }
 
 }
+
+
+
+
