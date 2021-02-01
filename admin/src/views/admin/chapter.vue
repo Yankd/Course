@@ -977,9 +977,18 @@
   export default {
     name: 'chapter',
     mounted() {
+      let _this = this;
+      _this.list();
+      //sidebar激活样式方法一
       // this.$parent.activeSideBar("business-chapter-sidebar")
     },
     methods: {
+      list (){
+        let _this = this;
+        _this.$ajax.get('http://127.0.0.1:9002/business/admin/chapter/list').then((response)=>{
+          console.log("查询大章列表：",response);
+        })
+      }
     }
   }
 </script>

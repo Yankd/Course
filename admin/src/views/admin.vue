@@ -500,6 +500,7 @@
       $('body').attr('class', 'no-skin');
       _this.activeSideBar(_this.$route.name.replace("/","-")+"-sidebar");
     },
+    //菜单激活样式方法二
     watch: {
       $route: {
         handler: function(val,oldVal){
