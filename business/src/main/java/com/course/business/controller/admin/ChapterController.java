@@ -1,5 +1,6 @@
 package com.course.business.controller.admin;
 
+import com.course.server.dto.ChapterDto;
 import com.course.server.dto.PageDto;
 import com.course.server.service.ChapterService;
 import org.slf4j.Logger;
@@ -27,5 +28,11 @@ public class ChapterController {
         LOG.info ("pageDto的值: {}",pageDto );
         chapterService.list (pageDto);
         return pageDto;
+    }
+    @RequestMapping("/save")
+    public ChapterDto save(@RequestBody ChapterDto chapterDto) {
+        LOG.info ("chapterDto的值: {}",chapterDto );
+        chapterService.save (chapterDto);
+        return chapterDto;
     }
 }
