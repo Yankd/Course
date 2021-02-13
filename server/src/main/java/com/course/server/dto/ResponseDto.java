@@ -22,6 +22,13 @@ public class ResponseDto<T> {
      */
     private T content;
 
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
 
     public String getCode() {
         return code;

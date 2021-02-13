@@ -6,9 +6,7 @@ import com.course.server.dto.ResponseDto;
 import com.course.server.service.ChapterService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -24,7 +22,7 @@ public class ChapterController {
     @Resource
     private ChapterService chapterService;
 
-    @RequestMapping("/list")
+    @PostMapping("/list")
     public ResponseDto list( @RequestBody PageDto pageDto) {
         LOG.info ("pageDto的值: {}",pageDto );
         //下面方法做了pageDto.set(),最终只是返回pageDto实例;
@@ -33,12 +31,19 @@ public class ChapterController {
         responseDto.setContent (pageDto);
         return responseDto;
     }
-    @RequestMapping("/save")
+    @PostMapping("/save")
     public ResponseDto save(@RequestBody ChapterDto chapterDto) {
         LOG.info ("chapterDto的值: {}",chapterDto );
         chapterService.save (chapterDto);
         ResponseDto responseDto = new ResponseDto ();
         responseDto.setContent (chapterDto);
+        return responseDto;
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseDto save(@PathVariable String id) {
+        LOG.info ("id的值: {}",id );
+        chapterService.delete (id);
+        ResponseDto responseDto = new ResponseDto ();
         return responseDto;
     }
 }
